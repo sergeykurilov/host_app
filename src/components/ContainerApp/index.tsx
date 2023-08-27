@@ -11,7 +11,7 @@ export const ContainerApp = ({
   CounterAppTwo,
 }: ContainerAppProps) => {
   return (
-    <div>
+    <div className="flex bg-amber-50">
       <React.Suspense fallback={"loading"}>
         <div>
           <div >
