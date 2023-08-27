@@ -10,7 +10,7 @@
 		"build": "webpack --mode production",
 		"clean": "rm -rf dist",
 		"heroku-postbuild": "npm run build",
-		"start": "serve dist -p 3000"
+		"start": "serve -s build"
 	},
 	"dependencies": {
 		"@babel/plugin-proposal-class-properties": "^7.16.7",
