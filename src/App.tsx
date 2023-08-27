@@ -13,6 +13,7 @@ const App = () => (
         element={
           <ContainerApp
             CounterAppOne={CounterAppOne}
+            CounterAppTwo={CounterAppTwo}
           />
         }
       />
