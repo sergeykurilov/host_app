@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../../index.css';
 
 type ContainerAppProps = {
   CounterAppOne: React.LazyExoticComponent<React.ComponentType<{}>>;
@@ -14,7 +14,7 @@ export const ContainerApp = ({
     <div className="flex bg-amber-50">
       <React.Suspense fallback={"loading"}>
         <div>
-          <div >
+          <div className="bg-amber-300">
             APP-1
           </div>
           <CounterAppOne />
@@ -22,7 +22,7 @@ export const ContainerApp = ({
       </React.Suspense>
       <React.Suspense fallback={"loading"}>
         <div>
-          <div >
+          <div className="font-bold">
             APP-2
           </div>
           <CounterAppTwo />
