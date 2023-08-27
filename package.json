@@ -6,10 +6,11 @@
 	},
 	"private": false,
 	"scripts": {
-		"start": "webpack serve",
+		"dev": "webpack serve",
 		"build": "webpack --mode production",
-		"serve": "serve dist -p 3000",
-		"clean": "rm -rf dist"
+		"clean": "rm -rf dist",
+		"heroku-postbuild": "npm run build",
+		"start": "serve dist -p 3000"
 	},
 	"dependencies": {
 		"@babel/plugin-proposal-class-properties": "^7.16.7",
