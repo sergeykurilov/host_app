@@ -1,6 +1,9 @@
 {
 	"name": "container",
 	"version": "0.0.0",
+	"engines": {
+		"node": "16.x.x"
+	},
 	"private": false,
 	"devDependencies": {
 		"@babel/plugin-proposal-class-properties": "^7.16.7",
