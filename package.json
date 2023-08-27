@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"start": "webpack serve",
-		"build": "npm install && webpack --mode production",
+		"build": "webpack --mode production",
 		"serve": "serve dist -p 3000",
 		"clean": "rm -rf dist"
 	},
