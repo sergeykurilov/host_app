@@ -60,8 +60,8 @@ module.exports = (env, argv) => {
       new ModuleFederationPlugin({
         name: "container",
         remotes: {
-          app1: "app1@http://ogz-microfrontend-app-1.s3-website.eu-central-1.amazonaws.com/remoteEntry.js",
-          app2: "app2@http://ogz-microfrontend-app-2.s3-website.eu-central-1.amazonaws.com/remoteEntry.js",
+          app1: isProduction ? process.env.PROD_APP1 : process.env.DEV_APP1,
+          app2: isProduction ? process.env.PROD_APP2 : process.env.DEV_APP2,
         },
         shared: {
           ...deps,
