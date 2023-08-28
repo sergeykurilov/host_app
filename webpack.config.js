@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack"); // only add this if you don't have yet
 const { ModuleFederationPlugin } = webpack.container;
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const {resolve} = require("path");
 const deps = require("./package.json").dependencies;
 require("dotenv").config({ path: "./.env" });
 
@@ -25,8 +26,9 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(sass|less|css)$/,
-          use: ["style-loader", "css-loader", 'sass-loader'],
+          test: /\.(css|scss)$/i,
+          include: resolve(__dirname, 'src'),
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
         {
           test: /\.(js|jsx|tsx|ts)$/,

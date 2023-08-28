@@ -1,5 +1,5 @@
 import React from "react";
-import '../../index.css';
+import '../../index.scss';
 
 type ContainerAppProps = {
   CounterAppOne: React.LazyExoticComponent<React.ComponentType<{}>>;
