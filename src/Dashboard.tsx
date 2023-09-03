@@ -1,4 +1,5 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -12,14 +13,15 @@ import {
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import classNames from "classnames";
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
-import "../../index.scss";
-import React from "react";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
+import "./index.scss";
+
+const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
+const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -41,7 +43,7 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -361,10 +363,16 @@ export const Dashboard = () => {
           </div>
 
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">main app</div>
+            <Routes>
+              <Route path="/" element={<div>host app!</div>} />
+              <Route path="app1/*" element={<CounterAppOne />} />
+              <Route path="app2/*" element={<CounterAppTwo />} />
+            </Routes>
           </main>
         </div>
       </div>
     </>
   );
 };
+
+export default Dashboard;
