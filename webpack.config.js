@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack"); // only add this if you don't have yet
 const { ModuleFederationPlugin } = webpack.container;
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const {resolve} = require("path");
+const { resolve } = require("path");
 const deps = require("./package.json").dependencies;
 require("dotenv").config({ path: "./.env" });
 
@@ -27,8 +27,8 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.(css|scss)$/i,
-          include: resolve(__dirname, 'src'),
-          use: ['style-loader', 'css-loader', 'postcss-loader'],
+          include: resolve(__dirname, "src"),
+          use: ["style-loader", "css-loader", "postcss-loader"],
         },
         {
           test: /\.(js|jsx|tsx|ts)$/,
@@ -66,8 +66,8 @@ module.exports = (env, argv) => {
       new ModuleFederationPlugin({
         name: "container",
         remotes: {
-          app1: isProduction ? process.env.PROD_APP1 : process.env.DEV_APP1,
-          app2: isProduction ? process.env.PROD_APP2 : process.env.DEV_APP2,
+          app1: !isProduction ? process.env.PROD_APP1 : process.env.DEV_APP1,
+          app2: !isProduction ? process.env.PROD_APP2 : process.env.DEV_APP2,
         },
         shared: {
           ...deps,
