@@ -19,6 +19,9 @@ module.exports = (env, argv) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
+      devMiddleware: {
+        writeToDisk: true,
+      },
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js"],

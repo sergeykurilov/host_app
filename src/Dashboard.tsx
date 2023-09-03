@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { Fragment, Suspense, useState } from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -24,7 +24,7 @@ const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
 const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
   { name: "App1", href: "/app1", icon: UsersIcon, current: false },
   { name: "App2", href: "/app2", icon: FolderIcon, current: false },
   { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
@@ -45,6 +45,9 @@ const userNavigation = [
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const isCurrentRoute = (href: string) => location.pathname === href;
 
   return (
     <>
@@ -119,7 +122,7 @@ const Dashboard = () => {
                                 <Link
                                   to={item.href}
                                   className={classNames(
-                                    item.current
+                                    isCurrentRoute(item.href)
                                       ? "bg-gray-800 text-white"
                                       : "text-gray-400 hover:text-white hover:bg-gray-800",
                                     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
@@ -201,7 +204,7 @@ const Dashboard = () => {
                         <Link
                           to={item.href}
                           className={classNames(
-                            item.current
+                            isCurrentRoute(item.href)
                               ? "bg-gray-800 text-white"
                               : "text-gray-400 hover:text-white hover:bg-gray-800",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
@@ -363,11 +366,13 @@ const Dashboard = () => {
           </div>
 
           <main className="py-10">
-            <Routes>
-              <Route path="/" element={<div>host app!</div>} />
-              <Route path="app1/*" element={<CounterAppOne />} />
-              <Route path="app2/*" element={<CounterAppTwo />} />
-            </Routes>
+            <Suspense fallback="loading...">
+              <Routes>
+                <Route path="/" element={<div>Host App!</div>} />
+                <Route path="app1/*" element={<CounterAppOne />} />
+                <Route path="app2/*" element={<CounterAppTwo />} />
+              </Routes>
+            </Suspense>
           </main>
         </div>
       </div>
