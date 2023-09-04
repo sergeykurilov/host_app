@@ -69,8 +69,11 @@ module.exports = (env, argv) => {
       new ModuleFederationPlugin({
         name: "container",
         remotes: {
-          app1: isProduction ? process.env.PROD_APP1 : process.env.DEV_APP1,
-          app2: isProduction ? process.env.PROD_APP2 : process.env.DEV_APP2,
+          app1: !isProduction ? process.env.PROD_APP1 : process.env.DEV_APP1,
+          app2: !isProduction ? process.env.PROD_APP2 : process.env.DEV_APP2,
+          profile: !isProduction
+            ? process.env.PROD_PROFILE
+            : process.env.DEV_PROFILE,
         },
         shared: {
           ...deps,
@@ -85,6 +88,25 @@ module.exports = (env, argv) => {
             eager: true,
             requiredVersion: deps["react-router-dom"],
           },
+          "@angular/core": {
+            eager: true,
+            singleton: true,
+            strictVersion: true,
+            requiredVersion: deps.dependencies["@angular/core"],
+          },
+          "@angular/common": {
+            eager: true,
+            singleton: true,
+            strictVersion: true,
+            requiredVersion: deps.dependencies["@angular/common"],
+          },
+          "@angular/router": {
+            eager: true,
+            singleton: true,
+            strictVersion: true,
+            requiredVersion: deps.dependencies["@angular/router"],
+          },
+          "@ngxs/store": { singleton: true, eager: true },
         },
       }),
       new HtmlWebpackPlugin({
