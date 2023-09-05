@@ -19,17 +19,28 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 import "./index.scss";
+import { AngularApp } from "./apps/AngularApp";
+import { VueApp } from "./apps/VueApp";
 
 const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
 const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
-const ProfileAngular = React.lazy(() => import("profile/ProfileModule"));
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
-  { name: "App1", href: "/app1", icon: UsersIcon, current: false },
-  { name: "App2", href: "/app2", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "/app3", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
+  { name: "React App 1", href: "/app1", icon: UsersIcon, current: false },
+  { name: "React App 2", href: "/app2", icon: FolderIcon, current: false },
+  {
+    name: "Angular Profile",
+    href: "/app3",
+    icon: CalendarIcon,
+    current: false,
+  },
+  {
+    name: "Vue Reports",
+    href: "/app4",
+    icon: DocumentDuplicateIcon,
+    current: false,
+  },
   { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
 
@@ -49,14 +60,10 @@ const Dashboard = () => {
   const location = useLocation();
 
   const isCurrentRoute = (href: string) => location.pathname === href;
-  console.log(ProfileAngular);
+
   return (
     <>
       <div>
-        <Suspense fallback="error">
-          <ProfileAngular />
-        </Suspense>
-
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -370,13 +377,14 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <main className="py-10">
+          <main>
             <Suspense fallback="loading...">
               <Routes>
                 <Route path="/" element={<div>Host App!</div>} />
                 <Route path="app1/*" element={<CounterAppOne />} />
                 <Route path="app2/*" element={<CounterAppTwo />} />
-                <Route path="app3/*" element={<ProfileAngular />} />
+                <Route path="app3/*" element={<AngularApp />} />
+                <Route path="app4/*" element={<VueApp />} />
               </Routes>
             </Suspense>
           </main>

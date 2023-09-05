@@ -13,8 +13,14 @@ declare module "app2/CounterAppTwo" {
   export default CounterAppTwo;
 }
 
-declare module "profile/ProfileModule" {
-  const ProfileModule: any;
+declare module "leftSideBar/leftSideBar" {
+  const { mount }: any;
 
-  export default ProfileModule;
+  export { mount };
+}
+
+declare module "rightSidebar/rightSidebar" {
+  const { mount }: any;
+
+  export { mount };
 }
