@@ -41,7 +41,6 @@ const navigation = [
     icon: DocumentDuplicateIcon,
     current: false,
   },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
 
 const teams = [
