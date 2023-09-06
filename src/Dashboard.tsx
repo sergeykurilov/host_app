@@ -28,13 +28,13 @@ const navigation = [
   { name: "React Apps", href: "/app1", icon: UsersIcon, current: false },
   {
     name: "Angular Profile",
-    href: "/app3",
+    href: "/app2",
     icon: CalendarIcon,
     current: false,
   },
   {
     name: "Vue Reports",
-    href: "/app4",
+    href: "/app3",
     icon: DocumentDuplicateIcon,
     current: false,
   },
