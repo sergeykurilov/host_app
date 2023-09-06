@@ -5,10 +5,8 @@ import {
   Bars3Icon,
   BellIcon,
   CalendarIcon,
-  ChartPieIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
-  FolderIcon,
   HomeIcon,
   UsersIcon,
   XMarkIcon,
@@ -27,8 +25,7 @@ const CounterAppTwo = React.lazy(() => import("app2/CounterAppTwo"));
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
-  { name: "React App 1", href: "/app1", icon: UsersIcon, current: false },
-  { name: "React App 2", href: "/app2", icon: FolderIcon, current: false },
+  { name: "React Apps", href: "/app1", icon: UsersIcon, current: false },
   {
     name: "Angular Profile",
     href: "/app3",
@@ -380,10 +377,17 @@ const Dashboard = () => {
             <Suspense fallback="loading...">
               <Routes>
                 <Route path="/" element={<div>Host App!</div>} />
-                <Route path="app1/*" element={<CounterAppOne />} />
-                <Route path="app2/*" element={<CounterAppTwo />} />
-                <Route path="app3/*" element={<AngularApp />} />
-                <Route path="app4/*" element={<VueApp />} />
+                <Route
+                  path="app1/*"
+                  element={
+                    <>
+                      <CounterAppOne />
+                      <CounterAppTwo />
+                    </>
+                  }
+                />
+                <Route path="app2/*" element={<AngularApp />} />
+                <Route path="app3/*" element={<VueApp />} />
               </Routes>
             </Suspense>
           </main>
